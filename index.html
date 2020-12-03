@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Countdown</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container countdown">
+      <audio autoplay loop>
+        <source src="assets/tetdongday.mp3" type="audio/mp3" />
+      </audio>
+      <h1>2021</h1>
+      <h2>Countdown of new year</h2>
+      <div class="count">
+        <div class="countd">
+          <div id="day" class="text">1</div>
+          <div>Days</div>
+        </div>
+        <div class="countd">
+          <div id="hour" class="text">2</div>
+          <div>Hours</div>
+        </div>
+        <div class="countd">
+          <div id="minute" class="text">3</div>
+          <div>Minutes</div>
+        </div>
+        <div class="countd">
+          <div id="second" class="text">4</div>
+          <div>Seconds</div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/jquery.fireworks.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".countdown").fireworks({
+          sound: true,
+          opacity: 0.4,
+          width: "100%",
+          height: "100%",
+        });
+        var count = new Date("Dec 31,2020 00:00:00").getTime();
+        var x = setInterval(function () {
+          var now = new Date().getTime();
+          var d = count - now;
+          var day = Math.floor(d / (1000 * 60 * 60 * 24));
+          var hour = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minute = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+          var second = Math.floor((d % (1000 * 60)) / 1000);
+
+          document.getElementById("day").innerHTML = day;
+          document.getElementById("hour").innerHTML = hour;
+          document.getElementById("minute").innerHTML = minute;
+          document.getElementById("second").innerHTML = second;
+
+          if (d < 0) {
+            clearInterval(x);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
